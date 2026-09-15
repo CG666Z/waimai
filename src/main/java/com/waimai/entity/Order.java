@@ -3,6 +3,8 @@ package com.waimai.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * 订单实体类，对应数据库 orders 表。
  * status 取值：待支付 / 已支付 / 配送中 / 已完成 / 已取消
@@ -10,6 +12,8 @@ import java.time.LocalDateTime;
 public class Order {
 
     private Long id;
+
+    @NotNull(message = "用户id不能为空")
     private Long userId;         // 谁下的单
     private Long merchantId;     // 哪家店
     private BigDecimal totalPrice; // 总价

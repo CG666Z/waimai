@@ -2,6 +2,7 @@ package com.waimai.controller;
 
 import com.waimai.entity.Order;
 import com.waimai.service.OrderService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +25,7 @@ public class OrderController {
 
     // POST /orders  请求体：{ "userId":1 }
     @PostMapping
-    public String place(@RequestBody Order order) {
+    public String place(@RequestBody @Valid Order order) {
         orderService.placeOrder(order.getUserId());
         return "下单成功";
     }

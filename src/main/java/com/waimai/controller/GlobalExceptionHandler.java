@@ -1,5 +1,6 @@
 package com.waimai.controller;
 
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -12,6 +13,18 @@ import java.util.Map;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    /**
+     * 参数校验失败（@Valid）时，返回第一个校验错误的提示。
+     * 比如用户名为空时，返回「用户名不能为空」。
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, Object> handleValidation(MethodArgumentNotValidException e) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("success", false);
+        result.put("message", e.getBindingResult().getFieldErrors().get(0).getDefaultMessage());
+        return result;
+    }
 
     @ExceptionHandler(Exception.class)
     public Map<String, Object> handle(Exception e) {
