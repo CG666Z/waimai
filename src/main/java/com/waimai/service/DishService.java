@@ -1,7 +1,7 @@
 package com.waimai.service;
 
-import com.waimai.dao.DishDao;
 import com.waimai.entity.Dish;
+import com.waimai.mapper.DishMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +14,13 @@ import java.util.List;
 public class DishService {
 
     @Autowired
-    private DishDao dishDao;
+    private DishMapper dishMapper;
 
     public List<Dish> listByMerchant(Long merchantId) {
-        return dishDao.findByMerchantId(merchantId);
+        return dishMapper.findByMerchantId(merchantId);
     }
 
     public Dish getDish(Long dishId) {
-        return dishDao.findById(dishId);
+        return dishMapper.findById(dishId);
     }
 }

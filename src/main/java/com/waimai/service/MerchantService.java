@@ -1,7 +1,7 @@
 package com.waimai.service;
 
-import com.waimai.dao.MerchantDao;
 import com.waimai.entity.Merchant;
+import com.waimai.mapper.MerchantMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +14,9 @@ import java.util.List;
 public class MerchantService {
 
     @Autowired
-    private MerchantDao merchantDao;
+    private MerchantMapper merchantMapper;
 
     public List<Merchant> listMerchants() {
-        return merchantDao.findAll();
+        return merchantMapper.findAll();
     }
 }
